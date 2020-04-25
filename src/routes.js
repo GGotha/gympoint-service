@@ -10,7 +10,7 @@ const HelpOrdersController = require("./app/controllers/HelpOrdersController");
 var allowedOrigins = process.env.CORS_ALLOW.split(",");
 routes.use(
   cors({
-    origin: function(origin, callback) {
+    origin: function (origin, callback) {
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         var msg =
@@ -27,6 +27,8 @@ routes.post(
   "/students/mobile-authenticate/:id",
   SessionController.mobileAuthenticate
 );
+
+routes.get("/", (req, res) => { return res.send('Welcome to the Gympoint') })
 
 routes.post("/students/:id/checkins", CheckinController.store);
 routes.get("/students/:id/checkins", CheckinController.index);
